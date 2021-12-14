@@ -9,7 +9,7 @@
 To verify that nginx was successfully installed and is running as a service in Ubuntu, run:
 
 `sudo systemctl status nginx`
-
+![install-nginx](https://user-images.githubusercontent.com/33351638/146085018-875a50c1-473e-4067-84e0-91a975f73b14.JPG)
 
 ## STEP 2 — INSTALLING MYSQL
 `sudo apt install mysql-server`
@@ -21,7 +21,7 @@ interactive script by running:
 test if you’re able to log in to the MySQL console by typing:
 
 `sudo mysql`
-
+![mysql](https://user-images.githubusercontent.com/33351638/146085036-db515207-a638-45f3-8962-5235f96ce498.JPG)
 
 ## Step 3 – Installing PHP
 
@@ -30,6 +30,8 @@ You’ll need to install php-fpm, which stands for “PHP fastCGI process manage
 To install these 2 packages at once, run:
 
 `sudo apt install php-fpm php-mysql`
+![php_install](https://user-images.githubusercontent.com/33351638/146084847-163d77fb-9016-4b13-8266-d6bd6c074dc2.JPG)
+![php](https://user-images.githubusercontent.com/33351638/146085081-768e2d84-957b-48cd-b240-47b7b6ed68a7.JPG)
 
 
 ## STEP 4 — CONFIGURING NGINX TO USE PHP PROCESSOR
@@ -100,6 +102,7 @@ disable default Nginx host that is currently configured to listen on port 80, fo
 reload Nginx to apply the changes:
 
 `sudo systemctl reload nginx`
+![reload](https://user-images.githubusercontent.com/33351638/146084931-b3bb04ce-d16c-4bc8-bc2e-4008fcb1d678.JPG)
 
 then write inside the index.html file
 `sudo echo '<!DOCTYPE html>
@@ -121,7 +124,7 @@ then write inside the index.html file
 <p><em>Thank you for using our service.</em></p>
 </body>
 </html>' > /var/www/edumixlemp/index.html`
-
+![web](https://user-images.githubusercontent.com/33351638/146084968-0fea7d50-e05b-41cd-94af-ad4094e32c92.JPG)
 
 ## STEP 5 – TESTING PHP WITH NGINX
 
@@ -134,6 +137,8 @@ This is valid PHP code that will return information about your server:
 
 `<?php
 phpinfo();`
+
+![phpinfo](https://user-images.githubusercontent.com/33351638/146084864-ddc05fd8-3e64-4b20-92d2-0f2faae2c626.JPG)
 
 You can use rm to remove that file:
 
@@ -155,6 +160,7 @@ Now we need to give this user permission over the example_database database:
 
 `GRANT ALL ON example_database.* TO 'example_user'@'%';`
 This will give the example_user user full privileges over the example_database database, while preventing this user from creating or modifying other databases on your server.
+![db](https://user-images.githubusercontent.com/33351638/146084985-dbc1b046-fdd3-4bed-853c-8707442acdd4.JPG)
 
 test if the new user has the proper permissions by logging in to the MySQL console again, this time using the custom user credentials:
 
@@ -187,7 +193,6 @@ $user = "example_user";
 $password = "password";
 $database = "example_database";
 $table = "todo_list";
-
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   echo "<h2>TODO</h2><ol>";
@@ -200,3 +205,5 @@ try {
     die();
 }`
 
+![php_script](https://user-images.githubusercontent.com/33351638/146084857-9f741d36-029b-447c-83cd-32c63e85d802.JPG)
+![php_scriptweb](https://user-images.githubusercontent.com/33351638/146084860-71f7e728-48f7-4b2b-b02a-6526dcb445a4.JPG)
