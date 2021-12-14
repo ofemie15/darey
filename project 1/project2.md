@@ -123,24 +123,80 @@ then write inside the index.html file
 </html>' > /var/www/edumixlemp/index.html`
 
 
+## STEP 5 – TESTING PHP WITH NGINX
+
+ test it to validate that Nginx can correctly hand .php files off to your PHP processor.
+ Open a new file called info.php within your document root in your text editor:
+
+`sudo nano /var/www/edumixlemp/info.php`
+
+This is valid PHP code that will return information about your server:
+
+`<?php
+phpinfo();`
+
+You can use rm to remove that file:
+
+`sudo rm /var/www/your_domain/info.php`
 
 
+## RETRIEVING DATA FROM MYSQL DATABASE WITH PHP (CONTINUED)
 
-##
+connect to the MySQL console using the root account:
 
-##
+`sudo mysql`
 
+To create a new database, run the following command from your MySQL console:
 
-##
+mysql> CREATE DATABASE `example_database`;
 
+`CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'password';`
+Now we need to give this user permission over the example_database database:
 
-##
+`GRANT ALL ON example_database.* TO 'example_user'@'%';`
+This will give the example_user user full privileges over the example_database database, while preventing this user from creating or modifying other databases on your server.
 
+test if the new user has the proper permissions by logging in to the MySQL console again, this time using the custom user credentials:
 
-##
+`mysql -u example_user -p`
+`SHOW DATABASES;`
 
+Next, we’ll create a test table named todo_list. From the MySQL console, run the following statement:
 
-##
+`CREATE TABLE example_database.todo_list (
+  item_id INT AUTO_INCREMENT,
+ content VARCHAR(255),
+  PRIMARY KEY(item_id) );`
+  
+  Adding values to database
+  `INSERT INTO example_database.todo_list (content) VALUES ("My first important item");`
+  
+  To see the records...
+  
+  `SELECT * FROM example_database.todo_list;`
+  
+  
+  Create a new PHP file in your custom web root directory using your preferred editor. We’ll use vi for that:
 
+`sudo nano /var/www/edumixlemp/todo_list.php`
+  
+ paste the code below
+ 
+ `<?php
+$user = "example_user";
+$password = "password";
+$database = "example_database";
+$table = "todo_list";
 
-##
+try {
+  $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+  echo "<h2>TODO</h2><ol>";
+  foreach($db->query("SELECT content FROM $table") as $row) {
+    echo "<li>" . $row['content'] . "</li>";
+  }
+  echo "</ol>";
+} catch (PDOException $e) {
+    print "Error!: " . $e->getMessage() . "<br/>";
+    die();
+}`
+
