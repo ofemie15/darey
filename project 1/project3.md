@@ -115,9 +115,27 @@ router.delete('/todos/:id', (req, res, next) => {
 })
 module.exports = router;`
 
-Moving forward let create Models directory.
 
-`mkdir Models`
+##MODELS
+
+Change directory back Todo folder with `cd ..` and install Mongoose
+
+`npm install mongoose`
+
+Create a new folder models :
+`mkdir models`
+
+Change directory into the newly created ‘models’ folder with
+`cd models`
+
+Inside the models folder, create a file and name it todo.js
+`touch todo.js`
+
+All three commands above can be defined in one line to be executed consequently with help of && operator, like this:
+
+`mkdir models && cd models && touch todo.js`
+
+
 
 
 
