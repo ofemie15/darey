@@ -65,13 +65,18 @@ app.use((req, res, next) => {
 res.send('Welcome to Express');
 });
 app.listen(port, () => {
-console.log(``Server running on port ${port}``)
+console.log(\``Server running on port ${port}\``)
 });`
 
 
 Now it is time to start our server to see if it works. Open your terminal in the same directory as your index.js file and type:
 
-node index.js
+`node index.js`
+
+We now need to edit the outbound of our EC2 Security group to listen to the port 5000 and then view the welcome page from our browser using the server url anad port number.
+
+`http://<PublicIP-or-PublicDNS>:5000`
+
 
 
 
