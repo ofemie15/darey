@@ -70,11 +70,13 @@ res.send('Welcome to Express');
 });
 
 app.listen(port, () => {
-console.log(\`Server running on port ${port}\`)
+console.log(```Server running on port ${port}```)
 });`
 
 
+Now it is time to start our server to see if it works. Open your terminal in the same directory as your index.js file and type:
 
+node index.js
 
 
 
