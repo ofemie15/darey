@@ -77,10 +77,54 @@ We now need to edit the outbound of our EC2 Security group to listen to the port
 
 `http://<PublicIP-or-PublicDNS>:5000`
 
+There are three actions that our To-Do application needs to be able to do:
 
+1. Create a new task
+2. Display list of all tasks
+3. Delete a completed task
 
+##Routes
 
+Each task will be associated with some particular endpoint and will use different standard HTTP request methods: POST, GET, DELETE.
 
+For each task, we need to create routes that will define various endpoints that the To-do app will depend on. So let us create a folder routes
+
+`mkdir routes`
+
+Change directory to routes folder.
+
+`cd routes`
+
+Now, create a file api.js with the command below
+
+`touch api.js`
+
+Open the file with the command below
+
+`vim api.js` or `nano api.js`
+
+Copy below code in the file. (Do not be overwhelmed with the code)
+
+`const express = require ('express');
+const router = express.Router();
+
+router.get('/todos', (req, res, next) => {
+
+});
+
+router.post('/todos', (req, res, next) => {
+
+});
+
+router.delete('/todos/:id', (req, res, next) => {
+
+})
+
+module.exports = router;`
+
+Moving forward let create Models directory.
+
+`mkdir Models`
 
 
 
